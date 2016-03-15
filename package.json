@@ -4,7 +4,9 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "test": "electron specs/testRunner.js",
+    "mocha": "electron-mocha ./specs"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,10 @@
   },
   "homepage": "https://github.com/atom/electron-quick-start#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.0"
+    "chai": "^3.5.0",
+    "electron-mocha": "^0.8.0",
+    "electron-prebuilt": "^0.36.0",
+    "i": "^0.3.4",
+    "walkdir": "0.0.11"
   }
 }
