@@ -1,14 +1,31 @@
 'use strict';
 
 const electron = require('electron');
+
+const ipc = electron.ipcMain;
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
+const nativeImage = require('electron').nativeImage;
+const Menu = electron.Menu;
+
+const Tray = electron.Tray;
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let tray = null;
+
+ipc.on('tray-click', function(event, arg) {
+    console.error(event, arg);  // prints "ping"
+    tray.popUpContextMenu();
+});
+
+ipc.on('toggle-visible', function () {
+    require('./visibilityToggle')();
+});
 
 function createWindow () {
   // Create the browser window.
@@ -18,7 +35,7 @@ function createWindow () {
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
@@ -29,9 +46,17 @@ function createWindow () {
   });
 }
 
+function createTray() {
+    tray = new Tray(nativeImage.createFromDataURL(require('./beanIcon')));
+    var contextMenu = Menu.buildFromTemplate(require('./menuTemplate'));
+    tray.setToolTip('This is my application.');
+    tray.setContextMenu(contextMenu);
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', createWindow);
+app.on('ready', createTray);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
