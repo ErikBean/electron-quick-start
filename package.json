@@ -4,7 +4,10 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "e2e": "mocha 'specs/e2e/**/*.js'",
+    "package": "electron-packager . POC --overwrite --platform=darwin --arch=x64 --version=0.36.0 --prune"
+
   },
   "repository": {
     "type": "git",
