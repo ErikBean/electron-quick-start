@@ -5,9 +5,22 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>E2E Test Native OS Integrations in Using Only Webdriver.io!</h1>
+    <h1>E2E Test Native OS Integrations in Using Webdriverio and RobotJS.</h1>
     We are using node <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    and Electron <script>document.write(process.versions.electron)</script>
+    <div class="sample">
+      <button id="basicNotification">Basic Notification</button>
+      <span>Basic notification: default icon, title, and message. Electron nofications is not supported on Windows 7 </span>
+    </div>
+    <div class="sample">
+      <button id="imageNotification">Image Notification</button>
+      <span>Image notification: icon, title, image, and message.(Only available on OS X Yosemite)</span>
+    </div>
+    <div class="sample">
+      <button id="nodeNotifier">Node Notifier</button>
+      <span>Alternate node-notifier module.  This works on Windows 7 too</span>
+    </div>
+    <script src="window.js"></script>
   </body>
 </html>

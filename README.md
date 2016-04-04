@@ -1,4 +1,4 @@
-# electron-webdriverio-native
+ # electron-webdriverio-native
 
 **Clone and run to see an end-to-end test of an Electron native OS feature**
 
@@ -20,10 +20,17 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 git clone https://github.com/ErikBean/electron-webdriverio-native.git
 # Go into the repository
 cd electron-webdriverio-native
+
+# Install dependencies and rebuild native robotjs components
+# Details here: https://github.com/atom/electron/blob/master/docs/tutorial/using-native-node-modules.md
+npm install
+./node_modules/.bin/electron-rebuild
+
 #Start chromedriver on another terminal:
 chromedriver --url-base=wd/hub --port=9515
-# Install dependencies and run the app
-npm install && npm run package && npm run e2e
+
+# run the app
+npm run package && npm run e2e
 ```
 
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
