@@ -31,13 +31,16 @@ describe("POC", function () {
         this.timeout(0);
         const webdriverio = require('webdriverio');
         const mlog = require('mocha-logger');
+        var os = require('os');
         var options = {
             host: "localhost", // Use localhost as chrome driver server
             port: 9515,        // "9515" is the port opened by chrome driver.
             desiredCapabilities: {
                 browserName: 'chrome',
                 chromeOptions: {
-                    binary: path.resolve('POC-darwin-x64', 'POC.app', 'Contents', 'MacOS', 'Electron'), // Path to your Electron binary.
+                    binary: (os.platform() == 'darwin')
+                      ? path.resolve('POC-darwin-x64', 'POC.app', 'Contents', 'MacOS', 'Electron')
+                      : path.resolve('POC-win32-x64', 'POC.exe'), // Path to your Electron binary.
                     args: []           // Optional, perhaps 'app=' + /path/to/your/app/
                 }
             }
